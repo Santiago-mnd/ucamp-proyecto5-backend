@@ -1,8 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/users.schema');
 const bcrypt = require('bcryptjs');
+const express = require('express');
 const jwt = require('jsonwebtoken');
+const router = express.Router();
+
+const User = require('../models/users.schema');
 
 router.get('/', async (req, res) => {
   try {
@@ -51,7 +52,6 @@ router.post('/create-user', async (req, res) => {
       },
       (error, token) => {
         if (error) throw error;
-        // res.json(newUser);
         res.json({ token });
       }
     );
