@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/gastos', require('./routes/gasto.routes'));
+app.use('/users', require('./routes/users.routes'));
 
 app.listen(process.env.PORT, () => {
   console.log(
