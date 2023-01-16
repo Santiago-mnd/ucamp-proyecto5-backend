@@ -176,7 +176,7 @@ const logWithToken = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  const refreshToken = req.header('x-auth-token');
+  const refreshToken = req.body.refreshToken;
 
   if (!refreshToken) {
     return res.status(401).json({
