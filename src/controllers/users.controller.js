@@ -30,7 +30,7 @@ const createUser = async (req, res) => {
       salt
     );
 
-    const newUser = new User({
+    const newUser = await User.create({
       username,
       email,
       password: hashedPassword,
@@ -38,7 +38,7 @@ const createUser = async (req, res) => {
 
     const payload = {
       user: {
-        id: newUser.id,
+        id: newUser._id,
       },
     };
 
@@ -51,6 +51,10 @@ const createUser = async (req, res) => {
       (error, token) => {
         if (error) throw error;
         res.json({ token });
+        // res.json({
+        //   newUser,
+        //   token,
+        // });
       }
     );
   } catch (error) {
@@ -60,7 +64,7 @@ const createUser = async (req, res) => {
   }
 };
 
-const loginUser = async () => {
+const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -84,7 +88,7 @@ const loginUser = async () => {
 
     const payload = {
       user: {
-        id: userExist.id,
+        id: userExist._id,
       },
     };
 
