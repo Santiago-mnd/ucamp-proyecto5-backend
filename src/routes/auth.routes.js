@@ -6,6 +6,8 @@ require('dotenv').config();
 const {
   signup,
   login,
+  logWithToken,
+  logout,
 } = require('../controllers/auth.controller');
 
 router.post(
@@ -21,7 +23,8 @@ router.post(
   ],
   signup
 );
-
 router.post('/login', login);
+router.post('/token', logWithToken);
+router.delete('/logout', logout);
 
 module.exports = router;
