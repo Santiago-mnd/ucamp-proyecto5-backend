@@ -16,8 +16,11 @@ router.post(
     check('username', 'Username is required')
       .not()
       .isEmpty(),
-    check('email', 'Email is required').isEmail(),
-    check('password', 'Password is required').isLength({
+    check('email', 'El email no es válido.').isEmail(),
+    check(
+      'password',
+      'La constraseña debe tener mínimo 6 caracteres.'
+    ).isLength({
       min: 6,
     }),
   ],

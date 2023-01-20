@@ -22,7 +22,7 @@ const signup = async (req, res) => {
 
   if (user) {
     return res.status(400).json({
-      message: 'User already exists',
+      message: 'Este email ya está registrado.',
     });
   }
 
@@ -77,11 +77,7 @@ const login = async (req, res) => {
 
   if (!isMatch) {
     return res.status(400).json({
-      errors: [
-        {
-          message: 'Email or password is invalid.',
-        },
-      ],
+      message: 'El email o password son invalidos.',
     });
   }
 
