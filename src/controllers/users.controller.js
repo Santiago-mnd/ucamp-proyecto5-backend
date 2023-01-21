@@ -14,6 +14,44 @@ const getUsers = async (req, res) => {
   }
 };
 
+const getSingleUser = async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    if (!email) {
+      return res.status(400).json({
+        message: 'El email no es válido o no existe.',
+      });
+    }
+
+    const user = await User.findOne({
+      email,
+    });
+    res.json(user);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error, message: 'Error getting user' });
+  }
+};
+
+const getSingleUserById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    if (!id) {
+      return res.status(400).json({
+        message: 'El id no es válido o no existe.',
+      });
+    }
+    const user = await User.findById({ _id: id });
+    res.json(user);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error, message: 'Error getting user' });
+  }
+};
+
 const createUser = async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -120,4 +158,6 @@ module.exports = {
   getUsers,
   createUser,
   loginUser,
+  getSingleUser,
+  getSingleUserById,
 };
