@@ -20,3 +20,7 @@ Se añadieron muchas rutas que hacen 'lo mismo' y se pudieron haber reutilizado,
 - url/users : Una forma de obtener datos de los usuarios.
 
 Esas son sólo las rutas de raíz, pero cada ruta cuenta con sus debidos métodos.
+
+## Deploy
+
+https://proyecto5-ecommerce.onrender.com
