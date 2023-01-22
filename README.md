@@ -18,3 +18,5 @@ Se añadieron muchas rutas que hacen 'lo mismo' y se pudieron haber reutilizado,
 - url/private : Obtiene todos los productos con toda la información disponible. Token requerido.
 - url/auth : Maneja la autorización general, tanto iniciar sesión como registrarse. Retornando un Token.
 - url/users : Una forma de obtener datos de los usuarios.
+
+Esas son sólo las rutas de raíz, pero cada ruta cuenta con sus debidos métodos.
