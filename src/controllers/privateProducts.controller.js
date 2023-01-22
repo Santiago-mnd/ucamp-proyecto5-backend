@@ -9,6 +9,21 @@ const getPrivateProducts = async (req, res) => {
   }
 };
 
+const getPrivateProduct = async (req, res) => {
+  const { price } = req.params;
+  try {
+    const privateProduct = await PrivateProduct.findOne({
+      price,
+    });
+    res.json(privateProduct);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'El producto no existe' });
+  }
+};
+
 module.exports = {
   getPrivateProducts,
+  getPrivateProduct,
 };
