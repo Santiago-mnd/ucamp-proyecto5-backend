@@ -61,11 +61,7 @@ const login = async (req, res) => {
 
   if (!user) {
     return res.status(400).json({
-      errors: [
-        {
-          message: 'Invalid credentials',
-        },
-      ],
+      message: 'El email o password son invalidos.',
     });
   }
 
@@ -104,7 +100,7 @@ const login = async (req, res) => {
 
   if (!token) {
     return res.status(400).json({
-      message: 'Something went wrong',
+      message: 'Algo salió mal',
     });
   }
 
@@ -119,11 +115,7 @@ const logWithToken = async (req, res) => {
 
   if (!refreshToken) {
     return res.status(401).json({
-      errors: [
-        {
-          message: 'Token not found',
-        },
-      ],
+      message: 'Token no encontrado',
     });
   }
 
@@ -133,11 +125,7 @@ const logWithToken = async (req, res) => {
 
   if (!foundToken) {
     return res.status(403).json({
-      errors: [
-        {
-          message: 'Invalid refresh token',
-        },
-      ],
+      message: 'refreshToken inválido',
     });
   }
 
@@ -162,11 +150,7 @@ const logWithToken = async (req, res) => {
     });
   } catch (error) {
     res.status(403).json({
-      errors: [
-        {
-          message: 'Invalid refresh token',
-        },
-      ],
+      message: 'refreshToken inválido',
     });
   }
 };
@@ -176,11 +160,7 @@ const logout = async (req, res) => {
 
   if (!refreshToken) {
     return res.status(401).json({
-      errors: [
-        {
-          message: 'Token not found',
-        },
-      ],
+      message: 'Token no encontrado',
     });
   }
 
@@ -190,11 +170,7 @@ const logout = async (req, res) => {
 
   if (!foundToken) {
     return res.status(403).json({
-      errors: [
-        {
-          message: 'Invalid refresh token',
-        },
-      ],
+      message: 'refreshToken inválido',
     });
   }
 
@@ -212,20 +188,16 @@ const logout = async (req, res) => {
 
     if (!deleted) {
       return res.status(400).json({
-        message: 'Something went wrong',
+        message: 'Algo salió mal',
       });
     }
 
     res.json({
-      message: 'User logged out',
+      message: 'Usuario deslogueado correctamente',
     });
   } catch (error) {
     res.status(403).json({
-      errors: [
-        {
-          message: 'Invalid refresh token',
-        },
-      ],
+      message: 'refreshToken inválido',
     });
   }
 };

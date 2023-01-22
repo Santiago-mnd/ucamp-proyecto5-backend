@@ -5,11 +5,7 @@ const authToken = (req, res, next) => {
   const token = req.header('x-auth-token');
   if (!token) {
     return res.status(401).json({
-      errors: [
-        {
-          message: 'Access denied',
-        },
-      ],
+      message: 'Acceso denegado, no hay token',
     });
   }
 
@@ -19,11 +15,7 @@ const authToken = (req, res, next) => {
     next();
   } catch (error) {
     res.status(403).json({
-      errors: [
-        {
-          message: 'Invalid token',
-        },
-      ],
+      message: 'Token inválido',
     });
   }
 };

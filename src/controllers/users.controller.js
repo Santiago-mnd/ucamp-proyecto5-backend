@@ -8,9 +8,10 @@ const getUsers = async (req, res) => {
     const users = await User.find({});
     res.json({ users });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error, message: 'Error getting users' });
+    res.status(500).json({
+      error,
+      message: 'Error obteniendo usuarios',
+    });
   }
 };
 
@@ -31,7 +32,7 @@ const getSingleUser = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ error, message: 'Error getting user' });
+      .json({ error, message: 'Error obteniendo usuario' });
   }
 };
 
@@ -48,7 +49,7 @@ const getSingleUserById = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ error, message: 'Error getting user' });
+      .json({ error, message: 'Error obteniendo usuario' });
   }
 };
 
@@ -57,9 +58,9 @@ const createUser = async (req, res) => {
 
   try {
     if (!username || !email || !password) {
-      return res
-        .status(400)
-        .json({ message: 'All fields are required' });
+      return res.status(400).json({
+        message: 'Todos los campos son requeridos',
+      });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -98,7 +99,7 @@ const createUser = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ error, message: 'Error creating new user' });
+      .json({ error, message: 'Error creando usuario' });
   }
 };
 
@@ -108,9 +109,9 @@ const loginUser = async (req, res) => {
   try {
     const userExist = await User.findOne({ email });
     if (!userExist) {
-      return res
-        .status(400)
-        .json({ message: 'Invalid credentials' });
+      return res.status(400).json({
+        message: 'El email o password no son válidos',
+      });
     }
 
     const isPassCorrect = await bcrypt.compare(
@@ -119,9 +120,9 @@ const loginUser = async (req, res) => {
     );
 
     if (!isPassCorrect) {
-      return res
-        .status(400)
-        .json({ message: 'Invalid credentials' });
+      return res.status(400).json({
+        message: 'El email o password no son válidos ',
+      });
     }
 
     const payload = {
@@ -145,12 +146,12 @@ const loginUser = async (req, res) => {
     } else {
       res
         .status(401)
-        .json({ message: 'Error creating token' });
+        .json({ message: 'Error creando Token' });
     }
   } catch (error) {
     res
       .status(401)
-      .json({ message: 'Error creating token' });
+      .json({ message: 'Error creando Token' });
   }
 };
 

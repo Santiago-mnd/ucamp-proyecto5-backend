@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
   if (!token) {
     return res
       .status(401)
-      .json({ message: 'No token, authorization denied' });
+      .json({ message: 'No hay token, permiso denegado' });
   }
 
   try {
@@ -17,6 +17,8 @@ module.exports = (req, res, next) => {
     req.user = decoded.user;
     next();
   } catch (error) {
-    res.status(401).json({ message: 'Token is not valid' });
+    res
+      .status(401)
+      .json({ message: 'El Token no es válido' });
   }
 };
